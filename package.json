@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^3.2.4"
+  },
+  "dependencies": {
+    "pm2": "^5.4.2"
+  }
+}

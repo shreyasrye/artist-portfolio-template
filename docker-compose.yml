@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+  database:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo-data:/data/db
+      - ./database/init:/docker-entrypoint-initdb.d/
+    networks:
+      - artwork-network
+
+  artwork-service:
+    build: ./artwork
+    ports:
+      - "3001:3001"
+    depends_on:
+      - database
+    environment:
+      MONGO_URI: mongodb://root:example@database:27017/artPortfolio?authSource=admin
+    networks:
+      - artwork-network
+  
+  bio-service:
+    build: ./bio
+    ports:
+      - "3002:3002"
+    depends_on:
+      - database
+    networks:
+      - artwork-network
+  
+  update-service:
+    build: ./update
+    ports:
+      - "3003:3003"
+    depends_on:
+      - database
+    networks:
+      - artwork-network
+
+  eventbus:
+    build: ./eventbus
+    ports:
+      - "4000:4000"
+    depends_on:
+      - database
+    networks:
+      - artwork-network
+
+  client:
+    build: ./client
+    ports:
+      - "5180:5173"
+    environment:
+      NODE_ENV: development
+    networks:
+      - artwork-network
+
+  download-service:
+    build: ./download
+    ports:
+      - "3004:3004"
+    networks:
+      - artwork-network
+
+networks:
+  artwork-network:
+    driver: bridge
+
+volumes:
+  mongo-data:

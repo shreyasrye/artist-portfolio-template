@@ -1,0 +1,27 @@
+{
+    "name": "eventbus",
+    "version": "1.0.0",
+    "description": "Event bus for inter-service communication",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+      "start": "pm2 start index.js --name eventbus --watch --time",
+      "dev": "nodemon index.js",
+      "logs": "pm2 logs eventbus",
+      "stop": "pm2 stop eventbus",
+      "delete": "pm2 delete eventbus"
+    },
+    "dependencies": {
+      "pm2": "^5.4.2",
+      "express": "^4.17.1",
+      "morgan" : "^1.10.0",
+      "node-fetch" : "^2.6.1",
+      "winston":"3.14.2"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.7"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+  

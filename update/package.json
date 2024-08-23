@@ -1,0 +1,29 @@
+{
+    "name": "update-service",
+    "version": "1.0.0",
+    "description": "Service for updating portfolio content",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+      "start": "pm2 start index.js -i 5 --name update-service --watch --time",
+      "dev": "nodemon index.js",
+      "logs": "pm2 logs update-service",
+      "stop": "pm2 stop update-service",
+      "delete": "pm2 delete update-service"
+  },
+    "dependencies": {
+      "express": "^4.17.1",
+      "dotenv": "^10.0.0",
+      "morgan": "^1.10.0",
+      "winston": "^3.3.3",
+      "pm2": "^5.1.0", 
+      "cors": "^2.8.5"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.7",
+      "eslint": "^7.32.0"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+  

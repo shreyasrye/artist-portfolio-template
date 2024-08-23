@@ -1,0 +1,13 @@
+{
+  "name": "art-portfolio-database",
+  "version": "1.0.0",
+  "description": "Database service for art portfolio",
+  "main": "populateDB.js",
+  "type": "module",
+  "scripts": {
+    "start": "node populateDB.js"
+  },
+  "dependencies": {
+    "mongodb": "^4.5.0"
+  }
+}
